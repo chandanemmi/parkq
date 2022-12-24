@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import Table from "./Table";
+import data from "./data.json";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { userData } from "./Redux/action";
+import Pagination from "./Pagination";
+import SearchSelect from "./SearchSelect";
 function App() {
+  console.log(data);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [PerPageRows, setPerPageRows] = useState(5);
+  const pages = Math.ceil(data.length / PerPageRows);
+  // const searchField = useSelector((state) => state.ourState.searchField);
+  // const selectO = useSelector((state) => state.ourState.selectO);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(userData(data));
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SearchSelect />
+      <Table currentPage={currentPage} PerPageRows={PerPageRows} />
+      <Pagination
+        pages={pages}
+        data={data}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </div>
   );
 }

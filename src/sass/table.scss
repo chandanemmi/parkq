@@ -1,0 +1,25 @@
+.table{
+ margin:2%;
+ padding: 2%;
+ background-color: greenyellow;
+ display: flex;
+ justify-content: space-around;
+ flex-direction: column;
+}
+.flexbox-item{
+    background-color: aqua;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+     border-bottom:1px solid grey;
+
+}
+.header{
+height: 30px;
+font-weight: 500;
+}
+
+.item{
+     // border-right: 1px solid grey;
+     background-color: aqua;
+}
